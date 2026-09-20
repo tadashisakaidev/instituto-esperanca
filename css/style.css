@@ -1,0 +1,488 @@
+/* ===========================
+   DESIGN SYSTEM - VARIÁVEIS CSS
+   =========================== */
+:root {
+  /* Cores primárias */
+  --cor-primaria: #1a5276;
+  --cor-primaria-clara: #2e86ab;
+  --cor-primaria-escura: #0d3a52;
+
+  /* Cores secundárias */
+  --cor-secundaria: #f4a261;
+  --cor-secundaria-clara: #f7b787;
+  --cor-secundaria-escura: #e08c3e;
+
+  /* Cores de apoio / feedback */
+  --cor-sucesso: #2a9d8f;
+  --cor-erro: #e63946;
+
+  /* Tons neutros */
+  --cor-texto: #2b2d42;
+  --cor-texto-claro: #6c757d;
+  --cor-fundo: #ffffff;
+  --cor-fundo-alt: #f8f9fa;
+  --cor-borda: #dee2e6;
+
+  /* Tipografia */
+  --fonte-principal: 'Segoe UI', Arial, sans-serif;
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.875rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.5rem;
+  --texto-xl: 2.5rem;
+
+  /* Espaçamentos modulares (escala de 8px) */
+  --espaco-xs: 0.5rem;
+  --espaco-sm: 1rem;
+  --espaco-md: 1.5rem;
+  --espaco-lg: 2rem;
+  --espaco-xl: 3rem;
+
+  /* Bordas e sombras */
+  --raio-borda: 8px;
+  --sombra-padrao: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  font-size: var(--texto-base);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo-alt);
+  line-height: 1.6;
+}
+
+h1 { font-size: var(--texto-xl); }
+h2 { font-size: var(--texto-lg); }
+h3 { font-size: 1.25rem; }
+
+a { color: inherit; }
+
+/* ===========================
+   GRID SYSTEM - 12 COLUNAS
+   =========================== */
+main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--espaco-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-lg) var(--espaco-sm);
+}
+
+main > section {
+  grid-column: span 12; /* mobile-first: ocupa tudo por padrão */
+}
+
+/* ===========================
+   FLEXBOX - HEADER E NAVEGAÇÃO
+   =========================== */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-sm);
+  padding: var(--espaco-md);
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  position: relative;
+}
+
+header img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Menu hambúrguer (checkbox hack) */
+.menu-toggle {
+  display: none;
+}
+
+.menu-hamburguer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: var(--espaco-md);
+  right: var(--espaco-md);
+  z-index: 20;
+}
+
+.menu-hamburguer span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--cor-fundo);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+nav ul {
+  display: none;
+  flex-direction: column;
+  list-style: none;
+  gap: var(--espaco-xs);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--cor-primaria);
+  padding: var(--espaco-sm);
+  z-index: 10;
+}
+
+.menu-toggle:checked ~ nav ul {
+  display: flex;
+}
+
+.menu-toggle:checked ~ .menu-hamburguer span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.menu-toggle:checked ~ .menu-hamburguer span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked ~ .menu-hamburguer span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+nav a {
+  color: var(--cor-fundo);
+  text-decoration: none;
+  font-weight: 600;
+  padding: var(--espaco-xs) var(--espaco-sm);
+  border-radius: var(--raio-borda);
+  transition: background-color 0.2s ease;
+}
+
+nav a:hover {
+  background-color: var(--cor-primaria-clara);
+}
+
+/* ===========================
+   FLEXBOX - CARTÕES DE PROJETOS
+   =========================== */
+#projetos-atuais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-md);
+}
+
+article {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-xs);
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: var(--espaco-md);
+  box-shadow: var(--sombra-padrao);
+}
+
+/* ===========================
+   FLEXBOX - FORMULÁRIO
+   =========================== */
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: var(--espaco-md);
+  margin-bottom: var(--espaco-md);
+}
+
+legend {
+  font-weight: 700;
+  color: var(--cor-primaria);
+  padding: 0 var(--espaco-xs);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-xs);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+input, select, textarea {
+  padding: var(--espaco-xs) var(--espaco-sm);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-size: var(--texto-base);
+  font-family: var(--fonte-principal);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cor-primaria-clara);
+  box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2);
+}
+
+input:not(:placeholder-shown):valid,
+textarea:not(:placeholder-shown):valid {
+  border-color: var(--cor-sucesso);
+}
+
+input:not(:placeholder-shown):invalid:not(:focus),
+textarea:not(:placeholder-shown):invalid:not(:focus) {
+  border-color: var(--cor-erro);
+  background-color: rgba(230, 57, 70, 0.05);
+}
+
+select:invalid {
+  color: var(--cor-texto-claro);
+}
+select:valid {
+  color: var(--cor-texto);
+  border-color: var(--cor-sucesso);
+}
+
+/* ===========================
+   BOTÃO - ESTADOS INTERATIVOS
+   =========================== */
+button {
+  padding: var(--espaco-sm) var(--espaco-lg);
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  border: none;
+  border-radius: var(--raio-borda);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  font-family: var(--fonte-principal);
+  cursor: pointer;
+  box-shadow: var(--sombra-padrao);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--cor-primaria-clara);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:focus {
+  outline: 3px solid var(--cor-secundaria);
+  outline-offset: 2px;
+}
+
+button:active {
+  background-color: var(--cor-primaria-escura);
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: var(--cor-texto-claro);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* ===========================
+   BADGES
+   =========================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem var(--espaco-sm);
+  border-radius: 999px;
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge--sucesso {
+  background-color: rgba(42, 157, 143, 0.15);
+  color: var(--cor-sucesso);
+}
+
+.badge--voluntario {
+  background-color: rgba(244, 162, 97, 0.15);
+  color: var(--cor-secundaria-escura);
+}
+
+.badge--doacao {
+  background-color: rgba(26, 82, 118, 0.15);
+  color: var(--cor-primaria);
+}
+
+/* ===========================
+   ALERTAS
+   =========================== */
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-sm);
+  padding: var(--espaco-sm) var(--espaco-md);
+  border-radius: var(--raio-borda);
+  border-left: 4px solid;
+  margin-bottom: var(--espaco-md);
+  font-size: var(--texto-sm);
+  grid-column: span 12;
+}
+
+.alerta--sucesso {
+  background-color: rgba(42, 157, 143, 0.1);
+  border-color: var(--cor-sucesso);
+  color: var(--cor-sucesso);
+}
+
+.alerta--erro {
+  background-color: rgba(230, 57, 70, 0.1);
+  border-color: var(--cor-erro);
+  color: var(--cor-erro);
+}
+
+/* ===========================
+   MODAL (via :target, 100% CSS)
+   =========================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay:target {
+  display: flex;
+}
+
+.modal {
+  background-color: var(--cor-fundo);
+  border-radius: var(--raio-borda);
+  padding: var(--espaco-lg);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--sombra-padrao);
+  text-align: center;
+}
+
+.modal h3 {
+  color: var(--cor-primaria);
+  margin-bottom: var(--espaco-sm);
+}
+
+.modal p {
+  margin-bottom: var(--espaco-md);
+  color: var(--cor-texto-claro);
+}
+
+.modal .btn-fechar {
+  display: inline-block;
+  padding: var(--espaco-xs) var(--espaco-lg);
+  background-color: var(--cor-primaria);
+  color: var(--cor-fundo);
+  text-decoration: none;
+  border-radius: var(--raio-borda);
+  font-weight: 600;
+}
+
+.modal .btn-fechar:hover {
+  background-color: var(--cor-primaria-clara);
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-xs);
+  padding: var(--espaco-lg);
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-fundo);
+  text-align: center;
+}
+
+footer a {
+  color: var(--cor-fundo);
+}
+
+/* ===========================
+   BREAKPOINTS RESPONSIVOS (5 pontos de quebra)
+   Estratégia mobile-first
+   =========================== */
+
+/* 1. 481px - Mobile grande/phablet */
+@media (min-width: 481px) {
+  #destaques ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-sm);
+    list-style: none;
+  }
+  #destaques li {
+    flex: 1 1 45%;
+  }
+}
+
+/* 2. 768px - Tablet */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .menu-hamburguer { display: none; }
+  nav {
+    position: static;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background-color: transparent;
+    padding: 0;
+    gap: var(--espaco-md);
+  }
+  article {
+    flex: 1 1 calc(50% - var(--espaco-md));
+  }
+}
+
+/* 3. 1024px - Notebook/desktop */
+@media (min-width: 1024px) {
+  #sobre, #missao { grid-column: span 8; }
+  #destaques { grid-column: span 4; }
+  article {
+    flex: 1 1 calc(33.333% - var(--espaco-md));
+  }
+}
+
+/* 4. 1440px - Desktop panorâmico */
+@media (min-width: 1440px) {
+  main {
+    max-width: 1320px;
+  }
+  body {
+    font-size: 1.0625rem;
+  }
+}
+
+/* 5. 1920px - Telas ultra-largas */
+@media (min-width: 1920px) {
+  main {
+    max-width: 1500px;
+  }
+  article {
+    flex: 1 1 calc(25% - var(--espaco-md));
+  }
+}

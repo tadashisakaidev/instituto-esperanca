@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instituto Esperança - Projetos Sociais</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <img src="img/logo.png" alt="Logotipo do Instituto Esperança, com um ícone de mãos unidas em torno de um coração">
         <h1>Nossos Projetos Sociais</h1>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
@@ -23,18 +32,21 @@
             <h2>Projetos em Andamento</h2>
 
             <article>
+                <span class="badge badge--voluntario">Voluntariado</span>
                 <h3>Educação para Todos</h3>
                 <p>Oferece reforço escolar e aulas de informática básica para crianças e
                 adolescentes de comunidades carentes, com o objetivo de reduzir a evasão escolar.</p>
             </article>
 
             <article>
+                <span class="badge badge--voluntario">Voluntariado</span>
                 <h3>Horta Comunitária</h3>
                 <p>Promove segurança alimentar e geração de renda por meio do cultivo coletivo
                 de hortas em bairros periféricos.</p>
             </article>
 
             <article>
+                <span class="badge badge--doacao">Doação</span>
                 <h3>Capacitação Profissional</h3>
                 <p>Cursos gratuitos de qualificação profissional para jovens e adultos em
                 situação de vulnerabilidade social.</p>
