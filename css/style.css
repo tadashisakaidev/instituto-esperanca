@@ -2,28 +2,23 @@
    DESIGN SYSTEM - VARIÁVEIS CSS
    =========================== */
 :root {
-  /* Cores primárias */
   --cor-primaria: #1a5276;
   --cor-primaria-clara: #2e86ab;
   --cor-primaria-escura: #0d3a52;
 
-  /* Cores secundárias */
   --cor-secundaria: #f4a261;
   --cor-secundaria-clara: #f7b787;
   --cor-secundaria-escura: #e08c3e;
 
-  /* Cores de apoio / feedback */
   --cor-sucesso: #2a9d8f;
   --cor-erro: #e63946;
 
-  /* Tons neutros */
   --cor-texto: #2b2d42;
   --cor-texto-claro: #6c757d;
   --cor-fundo: #ffffff;
   --cor-fundo-alt: #f8f9fa;
   --cor-borda: #dee2e6;
 
-  /* Tipografia */
   --fonte-principal: 'Segoe UI', Arial, sans-serif;
   --texto-xs: 0.75rem;
   --texto-sm: 0.875rem;
@@ -31,23 +26,18 @@
   --texto-lg: 1.5rem;
   --texto-xl: 2.5rem;
 
-  /* Espaçamentos modulares (escala de 8px) */
   --espaco-xs: 0.5rem;
   --espaco-sm: 1rem;
   --espaco-md: 1.5rem;
   --espaco-lg: 2rem;
   --espaco-xl: 3rem;
 
-  /* Bordas e sombras */
   --raio-borda: 8px;
   --sombra-padrao: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+html, body {
+  height: 100%;
 }
 
 body {
@@ -55,29 +45,33 @@ body {
   font-size: var(--texto-base);
   color: var(--cor-texto);
   background-color: var(--cor-fundo-alt);
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1 { font-size: var(--texto-xl); }
-h2 { font-size: var(--texto-lg); }
-h3 { font-size: 1.25rem; }
+h2 { font-size: var(--texto-lg); margin-bottom: var(--espaco-sm); }
+h3 { font-size: 1.25rem; margin-bottom: var(--espaco-xs); }
 
-a { color: inherit; }
+p, ul { margin-bottom: var(--espaco-sm); }
 
 /* ===========================
    GRID SYSTEM - 12 COLUNAS
    =========================== */
 main {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--espaco-lg);
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: var(--espaco-lg) var(--espaco-sm);
 }
 
 main > section {
-  grid-column: span 12; /* mobile-first: ocupa tudo por padrão */
+  grid-column: span 12;
 }
 
 /* ===========================
@@ -99,7 +93,6 @@ header img {
   height: 60px;
 }
 
-/* Menu hambúrguer (checkbox hack) */
 .menu-toggle {
   display: none;
 }
@@ -129,7 +122,6 @@ header img {
 nav ul {
   display: none;
   flex-direction: column;
-  list-style: none;
   gap: var(--espaco-xs);
   position: absolute;
   top: 100%;
@@ -155,28 +147,29 @@ nav ul {
 }
 
 nav a {
+  display: block;
   color: var(--cor-fundo);
-  text-decoration: none;
   font-weight: 600;
   padding: var(--espaco-xs) var(--espaco-sm);
   border-radius: var(--raio-borda);
   transition: background-color 0.2s ease;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.ativo {
   background-color: var(--cor-primaria-clara);
 }
 
 /* ===========================
    FLEXBOX - CARTÕES DE PROJETOS
    =========================== */
-#projetos-atuais {
+.lista-cartoes {
   display: flex;
   flex-wrap: wrap;
   gap: var(--espaco-md);
 }
 
-article {
+.lista-cartoes article {
   flex: 1 1 280px;
   display: flex;
   flex-direction: column;
@@ -196,7 +189,7 @@ article {
 fieldset {
   display: flex;
   flex-direction: column;
-  gap: var(--espaco-sm);
+  gap: var(--espaco-xs);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-borda);
   padding: var(--espaco-md);
@@ -215,6 +208,7 @@ label {
   gap: var(--espaco-xs);
   font-size: var(--texto-sm);
   font-weight: 600;
+  margin-top: var(--espaco-xs);
 }
 
 input, select, textarea {
@@ -232,23 +226,21 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2);
 }
 
-input:not(:placeholder-shown):valid,
-textarea:not(:placeholder-shown):valid {
+/* Estados de validação controlados via JavaScript (classes) */
+input.campo-valido, select.campo-valido, textarea.campo-valido {
   border-color: var(--cor-sucesso);
 }
 
-input:not(:placeholder-shown):invalid:not(:focus),
-textarea:not(:placeholder-shown):invalid:not(:focus) {
+input.campo-invalido, select.campo-invalido, textarea.campo-invalido {
   border-color: var(--cor-erro);
   background-color: rgba(230, 57, 70, 0.05);
 }
 
-select:invalid {
-  color: var(--cor-texto-claro);
-}
-select:valid {
-  color: var(--cor-texto);
-  border-color: var(--cor-sucesso);
+.erro-campo {
+  display: block;
+  min-height: 1.1em;
+  font-size: var(--texto-xs);
+  color: var(--cor-erro);
 }
 
 /* ===========================
@@ -262,7 +254,6 @@ button {
   border-radius: var(--raio-borda);
   font-size: var(--texto-base);
   font-weight: 600;
-  font-family: var(--fonte-principal);
   cursor: pointer;
   box-shadow: var(--sombra-padrao);
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
@@ -273,7 +264,7 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:focus {
+button:focus-visible {
   outline: 3px solid var(--cor-secundaria);
   outline-offset: 2px;
 }
@@ -281,7 +272,6 @@ button:focus {
 button:active {
   background-color: var(--cor-primaria-escura);
   transform: scale(0.97);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:disabled {
@@ -303,11 +293,6 @@ button:disabled {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-}
-
-.badge--sucesso {
-  background-color: rgba(42, 157, 143, 0.15);
-  color: var(--cor-sucesso);
 }
 
 .badge--voluntario {
@@ -332,7 +317,6 @@ button:disabled {
   border-left: 4px solid;
   margin-bottom: var(--espaco-md);
   font-size: var(--texto-sm);
-  grid-column: span 12;
 }
 
 .alerta--sucesso {
@@ -348,7 +332,7 @@ button:disabled {
 }
 
 /* ===========================
-   MODAL (via :target, 100% CSS)
+   MODAL (controlado via JavaScript, classe .aberto)
    =========================== */
 .modal-overlay {
   display: none;
@@ -360,7 +344,7 @@ button:disabled {
   align-items: center;
 }
 
-.modal-overlay:target {
+.modal-overlay.aberto {
   display: flex;
 }
 
@@ -376,26 +360,15 @@ button:disabled {
 
 .modal h3 {
   color: var(--cor-primaria);
-  margin-bottom: var(--espaco-sm);
 }
 
 .modal p {
-  margin-bottom: var(--espaco-md);
   color: var(--cor-texto-claro);
 }
 
 .modal .btn-fechar {
   display: inline-block;
-  padding: var(--espaco-xs) var(--espaco-lg);
-  background-color: var(--cor-primaria);
-  color: var(--cor-fundo);
-  text-decoration: none;
-  border-radius: var(--raio-borda);
-  font-weight: 600;
-}
-
-.modal .btn-fechar:hover {
-  background-color: var(--cor-primaria-clara);
+  margin-top: var(--espaco-sm);
 }
 
 /* ===========================
@@ -412,13 +385,8 @@ footer {
   text-align: center;
 }
 
-footer a {
-  color: var(--cor-fundo);
-}
-
 /* ===========================
    BREAKPOINTS RESPONSIVOS (5 pontos de quebra)
-   Estratégia mobile-first
    =========================== */
 
 /* 1. 481px - Mobile grande/phablet */
@@ -427,7 +395,6 @@ footer a {
     display: flex;
     flex-wrap: wrap;
     gap: var(--espaco-sm);
-    list-style: none;
   }
   #destaques li {
     flex: 1 1 45%;
@@ -441,9 +408,6 @@ footer a {
     justify-content: space-between;
   }
   .menu-hamburguer { display: none; }
-  nav {
-    position: static;
-  }
   nav ul {
     display: flex;
     flex-direction: row;
@@ -453,7 +417,7 @@ footer a {
     padding: 0;
     gap: var(--espaco-md);
   }
-  article {
+  .lista-cartoes article {
     flex: 1 1 calc(50% - var(--espaco-md));
   }
 }
@@ -462,7 +426,7 @@ footer a {
 @media (min-width: 1024px) {
   #sobre, #missao { grid-column: span 8; }
   #destaques { grid-column: span 4; }
-  article {
+  .lista-cartoes article {
     flex: 1 1 calc(33.333% - var(--espaco-md));
   }
 }
@@ -482,7 +446,7 @@ footer a {
   main {
     max-width: 1500px;
   }
-  article {
+  .lista-cartoes article {
     flex: 1 1 calc(25% - var(--espaco-md));
   }
 }

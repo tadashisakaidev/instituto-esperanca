@@ -1,0 +1,94 @@
+<section id="form-cadastro">
+    <h2>Formulário de Cadastro</h2>
+
+    <div class="alerta alerta--sucesso" id="alerta-sucesso" hidden>
+        ✓ Cadastro enviado com sucesso! Em breve entraremos em contato.
+    </div>
+
+    <div class="alerta alerta--erro" id="alerta-erro" hidden>
+        ✗ Por favor, corrija os campos destacados antes de enviar.
+    </div>
+
+    <form id="form-cadastro-ong" novalidate>
+
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" required minlength="5" placeholder="Digite seu nome completo">
+            <small class="erro-campo" data-erro-de="nome"></small>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+            <small class="erro-campo" data-erro-de="email"></small>
+
+            <label for="nascimento">Data de nascimento:</label>
+            <input type="date" id="nascimento" name="nascimento" required>
+            <small class="erro-campo" data-erro-de="nascimento"></small>
+
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required
+                   pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                   placeholder="000.000.000-00"
+                   title="Formato esperado: 000.000.000-00"
+                   maxlength="14">
+            <small class="erro-campo" data-erro-de="cpf"></small>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required
+                   pattern="\(\d{2}\)\s\d{4,5}-\d{4}"
+                   placeholder="(00) 00000-0000"
+                   title="Formato esperado: (00) 00000-0000"
+                   maxlength="15">
+            <small class="erro-campo" data-erro-de="telefone"></small>
+        </fieldset>
+
+        <fieldset>
+            <legend>Endereço</legend>
+
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" required
+                   pattern="\d{5}-\d{3}"
+                   placeholder="00000-000"
+                   title="Formato esperado: 00000-000"
+                   maxlength="9">
+            <small class="erro-campo" data-erro-de="cep"></small>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required placeholder="Rua, número, bairro">
+            <small class="erro-campo" data-erro-de="endereco"></small>
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade">
+            <small class="erro-campo" data-erro-de="cidade"></small>
+
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado" required>
+                <option value="">Selecione</option>
+                <option value="PA">Pará</option>
+                <option value="SP">São Paulo</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="MG">Minas Gerais</option>
+            </select>
+            <small class="erro-campo" data-erro-de="estado"></small>
+        </fieldset>
+
+        <fieldset>
+            <legend>Tipo de Participação</legend>
+
+            <label for="tipo-participacao">Como deseja contribuir?</label>
+            <select id="tipo-participacao" name="tipo-participacao" required>
+                <option value="">Selecione</option>
+                <option value="doador">Doador</option>
+                <option value="voluntario">Voluntário</option>
+                <option value="ambos">Ambos</option>
+            </select>
+            <small class="erro-campo" data-erro-de="tipo-participacao"></small>
+
+            <label for="mensagem">Mensagem (opcional):</label>
+            <textarea id="mensagem" name="mensagem" maxlength="500" placeholder="Conte-nos um pouco sobre seu interesse..."></textarea>
+        </fieldset>
+
+        <button type="submit" id="btn-enviar">Enviar Cadastro</button>
+    </form>
+</section>

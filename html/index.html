@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Esperança</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <img src="../img/logo.png" alt="Logotipo do Instituto Esperança, com um ícone de mãos unidas em torno de um coração">
+        <h1>Instituto Esperança</h1>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav>
+            <ul>
+                <li><a href="/" data-rota="/">Início</a></li>
+                <li><a href="/projetos" data-rota="/projetos">Projetos Sociais</a></li>
+                <li><a href="/cadastro" data-rota="/cadastro">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app">
+        <!-- Conteúdo injetado dinamicamente pelo router.js -->
+    </main>
+
+    <footer>
+        <h2>Contato</h2>
+        <address>
+            <p>E-mail: <a href="mailto:contato@institutoesperanca.org.br">contato@institutoesperanca.org.br</a></p>
+            <p>Telefone: <a href="tel:+5591999999999">(91) 99999-9999</a></p>
+        </address>
+        <p>&copy; 2026 Instituto Esperança. Todos os direitos reservados.</p>
+    </footer>
+
+    <div class="modal-overlay" id="modal-confirmacao">
+        <div class="modal">
+            <h3>Cadastro Confirmado!</h3>
+            <p>Obrigado por se juntar ao Instituto Esperança. Você receberá um e-mail com os próximos passos.</p>
+            <button type="button" class="btn-fechar" id="fechar-modal">Fechar</button>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>
