@@ -1,6 +1,40 @@
 /* ===========================
    DESIGN SYSTEM - VARIÁVEIS CSS
    =========================== */
+/* ===========================
+   MODO ESCURO (DARK MODE)
+   Respeita a preferência de tema do sistema operacional do usuário,
+   redefinindo as mesmas variáveis do Design System com valores
+   que mantêm o contraste mínimo de 4.5:1 exigido pelo WCAG 2.1 AA
+   =========================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria: #4a9dc9;
+    --cor-primaria-clara: #6bb8e0;
+    --cor-primaria-escura: #1a5276;
+
+    --cor-secundaria: #f4a261;
+    --cor-secundaria-clara: #f7b787;
+    --cor-secundaria-escura: #e08c3e;
+
+    --cor-sucesso: #4fd1c5;
+    --cor-erro: #ff6b7a;
+
+    --cor-texto: #f1f1f1;
+    --cor-texto-claro: #b0b0b0;
+    --cor-fundo: #1e1e2e;
+    --cor-fundo-alt: #141420;
+    --cor-borda: #3a3a4a;
+
+    --sombra-padrao: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  article,
+  fieldset {
+    background-color: #26263a;
+  }
+}
+
 :root {
   --cor-primaria: #1a5276;
   --cor-primaria-clara: #2e86ab;
