@@ -8,19 +8,27 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <!-- Skip link: permite que usuários de teclado pulem direto para o
+         conteúdo principal, sem precisar tabular por todo o menu -->
+    <a href="#app" class="skip-link">Pular para o conteúdo principal</a>
+
     <header>
         <img src="../img/logo.png" alt="Logotipo do Instituto Esperança, com um ícone de mãos unidas em torno de um coração">
         <h1>Instituto Esperança</h1>
 
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="menu-hamburguer">
+        <label for="menu-toggle" class="menu-hamburguer"
+               role="button" tabindex="0"
+               aria-label="Abrir menu de navegação"
+               aria-expanded="false"
+               aria-controls="menu-principal">
             <span></span>
             <span></span>
             <span></span>
         </label>
 
-        <nav>
-            <ul>
+        <nav aria-label="Navegação principal">
+            <ul id="menu-principal">
                 <li><a href="/" data-rota="/">Início</a></li>
                 <li><a href="/projetos" data-rota="/projetos">Projetos Sociais</a></li>
                 <li><a href="/cadastro" data-rota="/cadastro">Cadastro</a></li>
@@ -28,7 +36,9 @@
         </nav>
     </header>
 
-    <main id="app">
+    <!-- aria-live="polite": avisa leitores de tela quando o conteúdo
+         muda de rota, já que a SPA não recarrega a página inteira -->
+    <main id="app" aria-live="polite" tabindex="-1">
         <!-- Conteúdo injetado dinamicamente pelo router.js -->
     </main>
 
@@ -41,9 +51,9 @@
         <p>&copy; 2026 Instituto Esperança. Todos os direitos reservados.</p>
     </footer>
 
-    <div class="modal-overlay" id="modal-confirmacao">
+    <div class="modal-overlay" id="modal-confirmacao" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal">
-            <h3>Cadastro Confirmado!</h3>
+            <h3 id="modal-titulo">Cadastro Confirmado!</h3>
             <p>Obrigado por se juntar ao Instituto Esperança. Você receberá um e-mail com os próximos passos.</p>
             <button type="button" class="btn-fechar" id="fechar-modal">Fechar</button>
         </div>
