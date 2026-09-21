@@ -35,6 +35,11 @@ async function renderizarRota(caminho) {
         const html = await resposta.text();
         containerPrincipal.innerHTML = html;
 
+        // Acessibilidade: move o foco do teclado para o novo conteúdo.
+        // Sem isso, o foco "fica preso" no link que foi clicado, e
+        // leitores de tela não avisam o usuário sobre a mudança de página
+        containerPrincipal.focus();
+
         atualizarMenuAtivo(caminho);
 
         // Avisa outros módulos (ex: formValidacao.js) que a rota mudou

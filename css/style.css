@@ -36,6 +36,34 @@
   --sombra-padrao: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ===========================
+   ACESSIBILIDADE - SKIP LINK
+   Fica escondido fora da tela até receber foco via teclado (Tab)
+   =========================== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-fundo);
+  padding: var(--espaco-sm) var(--espaco-md);
+  z-index: 200;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ===========================
+   ACESSIBILIDADE - FOCO VISÍVEL GLOBAL
+   =========================== */
+a:focus-visible,
+.menu-hamburguer:focus-visible {
+  outline: 3px solid var(--cor-secundaria);
+  outline-offset: 2px;
+}
+
 html, body {
   height: 100%;
 }
