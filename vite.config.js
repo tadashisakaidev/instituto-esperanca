@@ -1,17 +1,14 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
 
 export default defineConfig({
-  // O index.html do projeto está em html/, não na raiz
-  root: 'html',
+  // Todo o projeto agora é a raiz — index.html, css/, js/, img/ e
+  // html/templates/ vivem no mesmo nível, sem pasta "html" intermediária
+  // para o index.html.
+  root: '.',
 
   build: {
-    // A pasta de saída da build (relativa ao root acima)
-    outDir: '../dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      input: resolve(__dirname, 'html/index.html')
-    }
+    outDir: 'dist',
+    emptyOutDir: true
   },
 
   server: {

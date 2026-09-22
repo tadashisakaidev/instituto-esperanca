@@ -12,11 +12,10 @@ const rotas = {
 
 const containerPrincipal = document.getElementById("app");
 
-// Caminho absoluto da pasta de templates, capturado UMA ÚNICA VEZ
-// a partir da URL original de carregamento do index.html (antes de
-// qualquer pushState alterar window.location). Isso evita que o fetch
-// quebre depois que a URL virtual muda para /projetos ou /cadastro.
-const BASE_TEMPLATES = window.location.pathname.replace(/[^/]*$/, "") + "templates/";
+// Caminho fixo da pasta de templates. Como index.html agora vive na
+// RAIZ do projeto (mesmo nível de html/), o caminho é sempre o mesmo,
+// em dev e em produção, sem precisar calcular a partir da URL atual.
+const BASE_TEMPLATES = "/html/templates/";
 
 /**
  * Busca o template HTML correspondente à rota
