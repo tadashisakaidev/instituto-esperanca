@@ -15,7 +15,7 @@ const containerPrincipal = document.getElementById("app");
 // Caminho fixo da pasta de templates. Como index.html agora vive na
 // RAIZ do projeto (mesmo nível de html/), o caminho é sempre o mesmo,
 // em dev e em produção, sem precisar calcular a partir da URL atual.
-const BASE_TEMPLATES = "/html/templates/";
+const BASE_TEMPLATES = "/templates/";
 
 /**
  * Busca o template HTML correspondente à rota
