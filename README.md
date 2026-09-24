@@ -6,6 +6,20 @@ Projeto desenvolvido como parte das Experiências Práticas I a IV da disciplina
 
 **Deploy:** https://instituto-esperanca.vercel.app/
 
+## 📌 Visão geral
+
+O **Instituto Esperança** é uma ONG fictícia dedicada à inclusão social, educação e cidadania. Este projeto é a plataforma web da organização, criada para três públicos principais:
+
+- **Visitantes**, que querem conhecer a missão e os projetos sociais em andamento
+- **Doadores e voluntários**, que buscam formas de contribuir (financeiramente ou com tempo)
+- **Interessados em se cadastrar**, que preenchem o formulário de inscrição na página de Cadastro
+
+A aplicação é uma **Single Page Application**: a navegação entre "Início", "Projetos Sociais" e "Cadastro" troca o conteúdo da página via JavaScript (History API), sem recarregamentos completos, mantendo header e footer fixos. Os principais fluxos são:
+
+1. **Descoberta** — o visitante conhece a ONG na Home e os projetos disponíveis em "Projetos Sociais"
+2. **Cadastro** — o formulário valida os dados em tempo real (CPF, telefone, CEP, e-mail), salva um rascunho automático no localStorage enquanto o usuário digita, e confirma o envio com um modal acessível
+3. **Persistência** — os cadastros enviados ficam salvos no localStorage do navegador, simulando o armazenamento de um backend real
+
 ## 🚀 Tecnologias utilizadas
 
 - **HTML5** semântico (header, nav, main, section, article, footer)
@@ -22,6 +36,7 @@ Projeto desenvolvido como parte das Experiências Práticas I a IV da disciplina
 instituto-esperanca/
 ├── index.html            # Shell da SPA — ponto de entrada, na raiz do projeto
 ├── vite.config.js        # Configuração do bundler (root ".", saída em dist/)
+├── vercel.json            # Rewrite de rotas para a Vercel (ver seção de Deploy)
 ├── package.json
 ├── css/
 │   ├── reset.css         # Normalização de estilos do navegador
@@ -88,6 +103,22 @@ npm run preview
 ```
 
 O deploy é feito na **Vercel**, conectada ao repositório GitHub: todo push na branch `main` dispara automaticamente um novo build e publicação (CI/CD). A Vercel detecta o projeto Vite pelo `package.json`, roda `npm run build` e publica o conteúdo de `dist/`.
+
+### Roteamento da SPA em produção
+
+Como a navegação (`/`, `/projetos`, `/cadastro`) é controlada inteiramente pelo `router.js` via History API — e não existem arquivos físicos correspondentes a essas rotas em `dist/` —, um acesso direto a uma URL interna (por exemplo, digitar `instituto-esperanca.vercel.app/cadastro` diretamente ou recarregar a página nessa rota) resultaria em 404: o servidor da Vercel tentaria localizar um arquivo `cadastro` ou uma pasta com esse nome antes de a aplicação JavaScript ter a chance de carregar e assumir o roteamento.
+
+Para resolver isso, o projeto inclui um arquivo `vercel.json` na raiz com uma regra de rewrite:
+
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+Essa regra instrui a Vercel a servir sempre o `index.html` para qualquer caminho que não corresponda a um arquivo estático real (como os arquivos em `assets/`), independentemente da rota acessada. Uma vez que o `index.html` carrega, o `router.js` lê `window.location.pathname` e renderiza o template correto — permitindo que qualquer rota da SPA seja acessada diretamente por URL ou recarregada sem erro.
 
 ## 🌳 Estratégia de versionamento (GitFlow)
 
